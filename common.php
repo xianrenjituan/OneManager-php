@@ -167,6 +167,13 @@ function main($path)
     if (isset($_COOKIE['timezone'])&&$_COOKIE['timezone']!='') $_SERVER['timezone'] = $_COOKIE['timezone'];
     if ($_SERVER['timezone']=='') $_SERVER['timezone'] = 0;
 
+    if (isset($_GET['WaitFunction'])) {
+        $response = WaitFunction($_GET['WaitFunction']);
+        //var_dump($response);
+        if ($response===true) return output("ok", 200);
+        elseif ($response===false) return output("", 206);
+        else return $response;
+    }
     if (getConfig('admin')=='') return install();
     if (getConfig('adminloginpage')=='') {
         $adminloginpage = 'admin';
@@ -204,13 +211,6 @@ function main($path)
             $url = path_format($_SERVER['PHP_SELF'] . '/');
             return output('<script>alert(\''.getconstStr('SetSecretsFirst').'\');</script>', 302, [ 'Location' => $url ]);
         }
-    if (isset($_GET['WaitFunction'])) {
-        $response = WaitFunction($_GET['WaitFunction']);
-        //var_dump($response);
-        if ($response===true) return output("ok", 200);
-        elseif ($response===false) return output("", 206);
-        else return $response;
-    }
 
     $_SERVER['sitename'] = getConfig('sitename');
     if (empty($_SERVER['sitename'])) $_SERVER['sitename'] = getconstStr('defaultSitename');
