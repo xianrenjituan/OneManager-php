@@ -611,6 +611,7 @@ class Onedrive {
                 texta[i].style.height = texta[i].scrollHeight + \'px\';
             }
         </script>';
+                $tmptoken['Driver'] = get_class($this);
                 $tmptoken['refresh_token'] = $refresh_token;
                 $tmptoken['token_expires'] = time()+7*24*60*60;
                 $response = setConfigResponse( setConfig($tmptoken, $this->disktag) );
