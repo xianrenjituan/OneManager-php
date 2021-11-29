@@ -308,7 +308,7 @@ function setVercelConfig($envs, $appId, $token)
 function VercelUpdate($appId, $token, $sourcePath = "")
 {
     if (checkBuilding($appId, $token)) return '{"error":{"message":"Another building is in progress."}}';
-    $url = "https://api.vercel.com/v12/deployments";
+    $url = "https://api.vercel.com/v13/deployments";
     $header["Authorization"] = "Bearer " . $token;
     $header["Content-Type"] = "application/json";
     $data["name"] = "OneManager";
