@@ -298,7 +298,7 @@ function setVercelConfig($envs, $appId, $token)
 function VercelUpdate($appId, $token, $sourcePath = "")
 {
     if (checkBuilding($appId, $token)) return '{"error":{"message":"Another building is in progress."}}';
-    $url = "https://api.vercel.com/v12/now/deployments";
+    $url = "https://api.vercel.com/v13/deployments";
     $header["Authorization"] = "Bearer " . $token;
     $header["Content-Type"] = "application/json";
     $data["name"] = "OneManager";
@@ -418,7 +418,7 @@ function WaitFunction($deployid) {
     }
     $header["Authorization"] = "Bearer " . getConfig('APIKey');
     $header["Content-Type"] = "application/json";
-    $url = "https://api.vercel.com/v11/now/deployments/" . $deployid;
+    $url = "https://api.vercel.com/v11/deployments/" . $deployid;
     $response = curl("GET", $url, "", $header);
     if ($response['stat']==200) {
         $result = json_decode($response['body'], true);
