@@ -636,10 +636,10 @@ function sortConfig(&$arr)
 {
     ksort($arr);
 
-    $tags = explode('|', $arr['disktag']);
-    unset($arr['disktag']);
-    if ($tags[0]!='') {
-        foreach($tags as $tag) {
+    if (isset($arr['disktag'])) {
+        $tags = explode('|', $arr['disktag']);
+        unset($arr['disktag']);
+        foreach($tags as $tag) if (isset($arr[$tag])) {
             $disks[$tag] = $arr[$tag];
             unset($arr[$tag]);
         }
