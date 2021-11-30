@@ -460,10 +460,6 @@ function changeAuthKey() {
     <script>
         var status = "' . $response['DplStatus'] . '";
         var i = 0;
-        var expd = new Date();
-        expd.setTime(expd.getTime()+1000);
-        var expires = "expires="+expd.toGMTString();
-        document.cookie=\'language=; path=/; \'+expires;
         var uploadList = setInterval(function(){
             if (document.getElementById("dis").style.display=="none") {
                 console.log(i++);
