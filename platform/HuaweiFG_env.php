@@ -527,11 +527,11 @@ function changeAuthKey() {
                 return false;
             }
             if (t.HW_key.value==\'\') {
-                alert(\'input name\');
+                alert(\'input Access Key Id\');
                 return false;
             }
             if (t.HW_secret.value==\'\') {
-                alert(\'input pwd\');
+                alert(\'input Secret Access Key\');
                 return false;
             }
             return true;
