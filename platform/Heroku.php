@@ -226,7 +226,7 @@ language:<br>';
         <label><input type="radio" name="language" value="'.$key1.'" '.($key1==$constStr['language']?'checked':'').' onclick="changelanguage(\''.$key1.'\')">'.$value1.'</label><br>';
         }
         $html .= '
-        <a href="https://dashboard.heroku.com/account" target="_blank">'.getconstStr('Create').' API Key</a><br>
+        <a href="https://dashboard.heroku.com/account" target="_blank">' . getconstStr('Create') . ' API Key</a><br>
         <label>API Key:<input name="APIKey" type="password" placeholder="" size=""></label><br>';
         $html .= '
         <label>Set admin password:<input name="admin" type="password" placeholder="' . getconstStr('EnvironmentsDescription')['admin'] . '" size="' . strlen(getconstStr('EnvironmentsDescription')['admin']) . '"></label><br>';
@@ -254,7 +254,7 @@ language:<br>';
                 alert(\'input admin\');
                 return false;
             }';
-        if (getConfig('APIKey')=='') $html .= '
+        $html .= '
             if (t.APIKey.value==\'\') {
                 alert(\'input API Key\');
                 return false;
@@ -394,15 +394,15 @@ function changeAuthKey() {
     }
     $html = '
     <form action="" method="post" onsubmit="return notnull(this);">
-        <a href="https://vercel.com/account/tokens" target="_blank">' . getconstStr('Create') . ' token</a><br>
-        <label>Token:<input name="APIKey" type="password" placeholder="" value=""></label><br>
+        <a href="https://dashboard.heroku.com/account" target="_blank">'.getconstStr('Create').' API Key</a><br>
+        <label>API Key:<input name="APIKey" type="password" placeholder="" size=""></label><br>
         <input type="submit" value="' . getconstStr('Submit') . '">
     </form>
     <script>
         function notnull(t)
         {
             if (t.APIKey.value==\'\') {
-                alert(\'input Token\');
+                alert(\'input API Key\');
                 return false;
             }
             return true;
