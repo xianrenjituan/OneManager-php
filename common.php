@@ -1436,6 +1436,9 @@ output:
 </script>';
         return message($html, 'Run cmd', $statusCode);
     }
+    if ($_GET['setup']==='auth') {
+        return changeAuthKey();
+    }
     if ($_GET['setup']==='platform') {
         $frame .= '
 <table border=1 width=100%>
