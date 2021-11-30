@@ -163,9 +163,6 @@ function install()
             //$tmp['language'] = $_POST['language'];
             $tmp['timezone'] = $_COOKIE['timezone'];
             $APIKey = $_POST['APIKey'];
-            //if ($APIKey=='') {
-            //    $APIKey = getConfig('APIKey');
-            //}
             $tmp['APIKey'] = $APIKey;
 
             $token = $APIKey;
@@ -429,4 +426,49 @@ function WaitFunction($deployid) {
         $response['body'] .= $url;
         return $response;
     }
+}
+
+function changeAuthKey() {
+    if ($_POST['APIKey']!='') {
+        $APIKey = $_POST['APIKey'];
+        $tmp['APIKey'] = $APIKey;
+        $response = json_decode(setVercelConfig($tmp, getConfig('HerokuappId'), $APIKey), true);
+        if (api_error($response)) {
+            $html = api_error_msg($response);
+            $title = 'Error';
+            return message($html, $title, 400);
+        } else {
+            $html = getconstStr('Success') . '
+    <script>
+        var status = "' . $response['DplStatus'] . '";
+        var i = 0;
+        var uploadList = setInterval(function(){
+            if (document.getElementById("dis").style.display=="none") {
+                console.log(i++);
+            } else {
+                clearInterval(uploadList);
+                location.href = "' . path_format($_SERVER['base_path'] . '/') . '";
+            }
+        }, 1000);
+    </script>';
+            return message($html, $title, 201, 1);
+        }
+    }
+    $html = '
+    <form action="" method="post" onsubmit="return notnull(this);">
+        <a href="https://vercel.com/account/tokens" target="_blank">' . getconstStr('Create') . ' token</a><br>
+        <label>Token:<input name="APIKey" type="password" placeholder="" value=""></label><br>
+        <input type="submit" value="' . getconstStr('Submit') . '">
+    </form>
+    <script>
+        function notnull(t)
+        {
+            if (t.APIKey.value==\'\') {
+                alert(\'Input Token\');
+                return false;
+            }
+            return true;
+        }
+    </script>';
+    return message($html, 'Change platform Auth token or key', 200);
 }
