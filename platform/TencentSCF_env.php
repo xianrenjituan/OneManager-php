@@ -168,14 +168,22 @@ function install()
         </script>
         <meta http-equiv="refresh" content="3;URL=' . $url . '">', 'Program updating', 201, 1);
         }
-        return output('Jump
+        return message(getconstStr('Success') . '
     <script>
         var expd = new Date();
         expd.setTime(expd.getTime()+(2*60*60*1000));
         var expires = "expires="+expd.toGMTString();
         document.cookie=\'language=; path=/; \'+expires;
-    </script>
-    <meta http-equiv="refresh" content="3;URL=' . path_format($_SERVER['base_path'] . '/') . '">', 302);
+        var i = 0;
+        var uploadList = setInterval(function(){
+            if (document.getElementById("dis").style.display=="none") {
+                console.log(i++);
+            } else {
+                clearInterval(uploadList);
+                location.href = "' . path_format($_SERVER['base_path'] . '/') . '";
+            }
+        }, 1000);
+    </script>', 201, 1);
     }
     if ($_GET['install1']) {
         $tmp['timezone'] = $_COOKIE['timezone'];
