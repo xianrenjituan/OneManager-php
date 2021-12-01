@@ -616,7 +616,7 @@ function filecache($disktag)
 {
     $dir = sys_get_temp_dir();
     if (!is_writable($dir)) {
-        $tmp = __DIR__ . '/tmp/';
+        $tmp = $_SERVER['HTTP_HOST'] . '/tmp/';
         if (file_exists($tmp)) {
             if ( is_writable($tmp) ) $dir = $tmp;
         } elseif ( mkdir($tmp) ) $dir = $tmp;
