@@ -522,10 +522,6 @@ function changeAuthKey() {
     <script>
         function notnull(t)
         {
-            if (t.HW_urn.value==\'\') {
-                alert(\'input URN\');
-                return false;
-            }
             if (t.HW_key.value==\'\') {
                 alert(\'input Access Key Id\');
                 return false;
