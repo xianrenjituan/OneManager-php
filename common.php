@@ -920,7 +920,7 @@ function message($message, $title = 'Message', $statusCode = 200, $wainstat = 0)
                             //setTimeout(function() { getStatus() }, 1000);
                         }
                     } else if (xhr.status==206) {
-                        errordiv.innerHTML = min + "<br>' . getconstStr('Wait') . '" + x;
+                        errordiv.innerHTML = "' . getconstStr('Wait') . '" + x + "<br>" + min;
                         setTimeout(function() { getStatus() }, 1000);
                     } else {
                         errordiv.innerHTML = "ERROR<br>" + xhr.status + "<br>" + xhr.responseText;
