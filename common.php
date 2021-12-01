@@ -1405,6 +1405,7 @@ function EnvOpt($needUpdate = 0)
     if ($_GET['setup']==='cmd') {
         $statusCode = 200;
         $html .= '
+Current DIR: ' . __DIR__ . '
 <form name="form1" method="POST" action="">
     <input id="inputarea" name="cmd" style="width:100%" value="' . $_POST['cmd'] . '"><br>
     <input type="submit" value="post">
