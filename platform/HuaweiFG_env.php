@@ -486,7 +486,7 @@ function WaitFunction() {
 }
 
 function changeAuthKey() {
-    if ($_POST['HW_urn']!=''&&$_POST['HW_key']!=''&&$_POST['HW_secret']!='') {
+    if ($_POST['HW_key']!=''&&$_POST['HW_secret']!='') {
         $tmp['HW_key'] = $_POST['HW_key'];
         $tmp['HW_secret'] = $_POST['HW_secret'];
         $response = setConfigResponse( SetbaseConfig($tmp, getConfig('HW_urn'), $tmp['HW_key'], $tmp['HW_secret']) );
