@@ -370,7 +370,7 @@ function changeAuthKey() {
     if ($_POST['APIKey']!='') {
         $APIKey = $_POST['APIKey'];
         $tmp['APIKey'] = $APIKey;
-        $response = json_decode(setHerokuConfig($tmp, getConfig('HerokuappId'), $APIKey), true);
+        $response = setConfigResponse( setHerokuConfig($tmp, getConfig('HerokuappId'), $APIKey) );
         if (api_error($response)) {
             $html = api_error_msg($response);
             $title = 'Error';
